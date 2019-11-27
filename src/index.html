@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>wargame map</title>
+    <style>
+      .region {
+        filter: url(#filter);
+        stroke: #000;
+        stroke-opacity: 0.4;
+        stroke-width: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 -50 600 900"
+      width="600px"
+      height="800px"
+    >
+      <defs>
+        <filter
+          id="filter"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="userSpaceOnUse"
+          color-interpolation-filters="linearRGB"
+        >
+          <feColorMatrix
+            type="matrix"
+            values="0.3 0 0 0 0
+                0 0.3 0 0 0
+                0 0 0.3 0 0
+                0 0 0 500 -20"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="merge"
+            result="colormatrix2"
+          />
+          <feOffset
+            dx=""
+            dy="30"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            in="colormatrix1"
+            result="offset1"
+          />
+          <feComposite
+            in="offset1"
+            in2="offset1"
+            operator="atop"
+            x="0%"
+            y="0%"
+            width="100%"
+            height="100%"
+            result="composite1"
+          />
+          <feMerge x="0%" y="0%" width="100%" height="100%" result="merge">
+            <feMergeNode in="composite1" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <path
+          id="a"
+          d="M30 88L97 0h150l91 44v44l-30 90H184l-89-45H47l-17-16V89"
+        />
+        <path id="b" d="M47 134L0 179v48l69 72h93l23-120-90-45z" />
+        <path
+          id="c"
+          d="M185 179l-23 120 177 88h161l44-104v-81l-74-70H324l-15 47z"
+        />
+        <path
+          id="d"
+          d="M69 299L0 387v100l140 115h94l21-151h42l42-39v-25l-177-88z"
+        />
+        <path
+          id="e"
+          d="M234 602l119 72h137l89-72 33-115v-61l-52-39H339v25l-42 39h-42z"
+        />
+      </defs>
+      <g>
+        <use class="region" fill="cornflowerblue" xlink:href="#a" />
+        <use class="region" fill="coral" xlink:href="#b" />
+        <use class="region" fill="yellowgreen" xlink:href="#c" />
+        <use class="region" fill="hotpink" xlink:href="#d" />
+        <use class="region" fill="gold" xlink:href="#e" />
+      </g>
+    </svg>
+  </body>
+</html>
